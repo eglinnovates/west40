@@ -1,61 +1,62 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<p align="center" style="background-color: rgb(31,61,123)"><a href="http://44.215.48.16" target="_blank"><img src="https://static.wixstatic.com/media/871c5a_b0955874382040dd80226fa20be7455e~mv2.png/v1/fill/w_174,h_102,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/w40_logo_White.png"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## About West40 Student Roster
 
-## About Laravel
+A simple Laravel app to manage a roster of students. It includes Breeze authentication, CRUD, search, sorting, pagination, soft deletes with restore/force-delete, responsive UI with Tailwind, and a small Users admin (including activate/deactivate).
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Features
+Students:
+- CRUD functionality (create, edit, soft-delete to “trash”, restore, force-delete).
+- Server + browser-side validation.
+- Search by name/email.
+- Sortable columns (ID, Name, Email, DOB, Created).
+- Pagination with query-string persistence.
+- Responsive table: hides Email/DOB/Created on mobile.
+- Icon buttons for edit/delete/restore with accessible labels.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Users:
+- CRUD functionality (create/edit/activate/inactivate).
+- Server + browser-side validation.
+- Search by name/email.
+- Sortable columns (ID, Name, Email, Created).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Layout/UX:
+- Top nav with logo and auth actions.
+- Sidebar nav on desktop; mobile hamburger shows the same links.
+- Tailwind CSS + Vite; small Alpine.js snippets for hamburger + search clear ✕.
+- Fully responsive design
+  
+## Requirements
+- PHP 8.2+
+- Composer
+- Node 18+ (or 20+) & npm
+- MySQL/MariaDB (or SQLite for quick start)
 
-## Learning Laravel
+## Installation
+```
+1) Clone & install
+git clone <your-repo-url> student-roster
+cd student-roster
+cp .env.example .env
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+composer install
+php artisan key:generate
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+npm install
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+2) Configure DB in .env
+DB_DATABASE=student_roster
+DB_USERNAME=...
+DB_PASSWORD=...
 
-## Laravel Sponsors
+3) Migrate (and seed demo data)
+php artisan migrate
+php artisan db:seed --class=StudentSeeder   # demo students via factory (optional)
+php artisan db:seed --class=UserSeeder    # if you add one
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+4) Build frontend (dev)
+npm run dev
 
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+5) Run the app
+php artisan serve
+```
